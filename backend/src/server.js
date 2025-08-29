@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 // Importar rutas
-const cityRoutes = require('./routes/city.routes');
+
 const userRoutes = require('./routes/user.routes');
 const roleRoutes = require('./routes/role.routes');
 const productRoutes = require('./routes/product.routes');
