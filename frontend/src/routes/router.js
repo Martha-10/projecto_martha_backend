@@ -22,6 +22,12 @@ let previousRoute = null;
 export function router() {
     const path = location.hash || '#/';
 
+    // Redirigir a login si se intenta acceder a la cuenta sin estar autenticado
+    if (path === '#/account' && !isAuthenticated()) {
+        window.location.hash = '#/login'; // Redirigir a login si no está autenticado
+        return; // Detener la ejecución para no cargar la ruta de la cuenta
+    }
+
     const view = routes[path];
     if (view) {
         view();
@@ -29,4 +35,11 @@ export function router() {
     } else {
         renderNotFound(previousRoute);
     }
+}
+
+// Función para verificar si el usuario está autenticado
+function isAuthenticated() {
+    // Aquí iría la lógica real para verificar si el usuario está autenticado
+    // Puede ser algo como una verificación de token en localStorage o cookies
+    return localStorage.getItem('user') !== null; // Simulación con localStorage
 }
